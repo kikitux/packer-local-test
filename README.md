@@ -26,6 +26,6 @@ $ git checkout pr/2805
 Switched to branch 'pr/2805'                                                                                          Your branch is up-to-date with 'origin/pr/2805'.                                                                      
 
 $ cat -n builder/digitalocean/artifact.go | grep 35
-    35          return fmt.Sprintf("%s:%s", a.regionName, strconv.FormatUint(uint64(a.snapshotId), 10))
+35          return fmt.Sprintf("%s:%s", a.regionName, strconv.FormatUint(uint64(a.snapshotId), 10))
 ```
 
