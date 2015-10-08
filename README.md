@@ -10,6 +10,17 @@ If local host have `virtualbox`, `vmware`, `docker` we will try to test locally.
 
 Then, we will be using `vmware-vmx` will spin a vm and test packer with a suite of known test.
 
+### TODO
+
+be able to:
+
+```bash
+--repo <user/repo>, default to mitchellh/packer
+[ --pr <number> || --pr <latest> ] || [ --branch <branch> ]
+```
+
+
+
 ### Local requirements
 
 - go
