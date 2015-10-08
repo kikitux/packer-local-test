@@ -1,25 +1,35 @@
 # packer-local-test
 
-### Goal
+## Goal
 Toy project that will try to create a test suite for packer.
 
-### Main Idea
+## Main Idea
 
 If local host have `go` and `gox` we will build locally.
 If local host have `virtualbox`, `vmware`, `docker` we will try to test locally.
 
 Then, we will be using `vmware-vmx` will spin a vm and test packer with a suite of known test.
 
-### TODO
+## Workflow
+
+If GOPATH is set, will:
+- go get is there is no $GOPATH/src/github.com/mitchellh/packer
+- git fetch
+- ensure pr/* is part of the repo
+- run make updatedeps on first run, or if updatedeps is an argument
+
+If GOPATH is set, and bzr, go, gox are available, it will:
+- make test
+- make dev
+  
+
+## TODO
 
 be able to:
 
 ```bash
---repo <user/repo>, default to mitchellh/packer
-[ --pr <number> || --pr <latest> ] || [ --branch <branch> ]
+[ <master || <branch> || <number> || <latest> ]
 ```
-
-
 
 ### Local requirements
 
@@ -30,10 +40,10 @@ be able to:
 
 
 ```bash.                                                                                                                                                                                                                                   
-.                                                                                                                                                                                                                                   
-|-- Darwin                                                                                                                                                                                                                          
-|-- Darwin.iso                                                                                                                                                                                                                      
-|-- Darwin.vmx                                                                                                                                                                                                                      
+.
+|-- Darwin
+|-- Darwin.iso
+|-- Darwin.vmx
 |-- LICENSE
 |-- README.md
 |-- packer
