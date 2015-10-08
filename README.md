@@ -28,7 +28,7 @@ If GOPATH is set, and bzr, go, gox are available, it will:
 be able to:
 
 ```bash
-[ <master || <branch> || <number> || <latest> ]
+[ <master> || <branch> || <number> || <latest> ]
 ```
 
 ### Local requirements
