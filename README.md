@@ -5,7 +5,7 @@ Toy project that will try to create a test suite for packer.
 
 ## Main Idea
 
-If local host have `go` and `gox` we will build locally.
+If local host have `bzr`, `go` and `gox` we will build locally.
 If local host have `virtualbox`, `vmware`, `docker` we will try to test locally.
 
 Then, we will be using `vmware-vmx` will spin a vm and test packer with a suite of known test.
@@ -33,8 +33,11 @@ be able to:
 
 ### Local requirements
 
-- go
-- gox
+- `git`
+- `bzr`
+- `go`
+- `gox`
+- GOPATH
 
 ### File structure
 
@@ -86,8 +89,6 @@ go get -v -d ./...
 
 
 ### Tips that will make thing easier
-
-
 
 ```bash
 git clone https://github.com/mitchellh/packer.git
