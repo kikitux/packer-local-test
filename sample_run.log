@@ -1,0 +1,213 @@
+$ bash packer-local-test.sh 2810 | tee sample_run.log                                                                                                                                                 
+
+
+~/go/src/github.com/mitchellh/packer /Volumes/hd1/Dropbox/am/Git/kikitux/packer-local-test
+Your branch is up-to-date with 'origin/master'.
+Already up-to-date.
+Fetching origin
+INFO: Currently on master (31d367881408587d662527fd72016ce70de35e28)
+go get -u github.com/mitchellh/gox
+go get -u golang.org/x/tools/cmd/stringer
+go list ./... \
+		| xargs go list -f '{{join .Deps "\n"}}' \
+		| grep -v github.com/mitchellh/packer \
+		| grep -v '/internal/' \
+		| sort -u \
+		| xargs go get -f -u -v -d ; if [ $? -ne 0 ]; then \
+		echo "ERROR: go get failed. Your git branch may have changed; you were on master (31d367881408587d662527fd72016ce70de35e28)."; \
+	fi
+INFO: Currently on master (31d367881408587d662527fd72016ce70de35e28)
+/Volumes/hd1/Dropbox/am/Git/kikitux/packer-local-test
+build goes here
+~/go/src/github.com/mitchellh/packer /Volumes/hd1/Dropbox/am/Git/kikitux/packer-local-test
+Will checkout to pr/2810
+Branch pr/2810 set up to track remote branch pr/2810 from origin.
+go get -v -d ./...
+go test ./...  -timeout=15s
+ok  	github.com/mitchellh/packer	0.019s
+ok  	github.com/mitchellh/packer/builder/amazon/chroot	0.027s
+ok  	github.com/mitchellh/packer/builder/amazon/common	0.019s
+ok  	github.com/mitchellh/packer/builder/amazon/ebs	0.023s
+ok  	github.com/mitchellh/packer/builder/amazon/instance	0.056s
+ok  	github.com/mitchellh/packer/builder/digitalocean	0.031s
+ok  	github.com/mitchellh/packer/builder/docker	0.029s
+ok  	github.com/mitchellh/packer/builder/file	0.016s
+ok  	github.com/mitchellh/packer/builder/googlecompute	2.447s
+ok  	github.com/mitchellh/packer/builder/null	0.504s
+ok  	github.com/mitchellh/packer/builder/openstack	0.016s
+ok  	github.com/mitchellh/packer/builder/parallels/common	2.826s
+ok  	github.com/mitchellh/packer/builder/parallels/iso	0.041s
+ok  	github.com/mitchellh/packer/builder/parallels/pvm	0.020s
+ok  	github.com/mitchellh/packer/builder/qemu	0.285s
+ok  	github.com/mitchellh/packer/builder/virtualbox/common	2.767s
+ok  	github.com/mitchellh/packer/builder/virtualbox/iso	0.043s
+ok  	github.com/mitchellh/packer/builder/virtualbox/ovf	0.020s
+ok  	github.com/mitchellh/packer/builder/vmware/common	0.577s
+ok  	github.com/mitchellh/packer/builder/vmware/iso	0.052s
+ok  	github.com/mitchellh/packer/builder/vmware/vmx	0.021s
+ok  	github.com/mitchellh/packer/command	0.061s
+ok  	github.com/mitchellh/packer/common	0.098s
+ok  	github.com/mitchellh/packer/common/json	0.006s
+?   	github.com/mitchellh/packer/common/ssh	[no test files]
+ok  	github.com/mitchellh/packer/common/uuid	0.009s
+ok  	github.com/mitchellh/packer/communicator/ssh	0.344s
+ok  	github.com/mitchellh/packer/communicator/winrm	0.042s
+ok  	github.com/mitchellh/packer/fix	0.008s
+ok  	github.com/mitchellh/packer/helper/builder/testing	0.008s
+ok  	github.com/mitchellh/packer/helper/communicator	0.016s
+ok  	github.com/mitchellh/packer/helper/config	0.009s
+ok  	github.com/mitchellh/packer/helper/flag-kv	0.008s
+ok  	github.com/mitchellh/packer/helper/flag-slice	0.007s
+ok  	github.com/mitchellh/packer/packer	0.236s
+ok  	github.com/mitchellh/packer/packer/plugin	0.265s
+ok  	github.com/mitchellh/packer/packer/rpc	0.149s
+ok  	github.com/mitchellh/packer/plugin/builder-amazon-chroot	0.018s
+ok  	github.com/mitchellh/packer/plugin/builder-amazon-ebs	0.020s
+ok  	github.com/mitchellh/packer/plugin/builder-amazon-instance	0.020s
+ok  	github.com/mitchellh/packer/plugin/builder-digitalocean	0.018s
+ok  	github.com/mitchellh/packer/plugin/builder-docker	0.018s
+?   	github.com/mitchellh/packer/plugin/builder-file	[no test files]
+ok  	github.com/mitchellh/packer/plugin/builder-googlecompute	0.019s
+ok  	github.com/mitchellh/packer/plugin/builder-null	0.017s
+ok  	github.com/mitchellh/packer/plugin/builder-openstack	0.018s
+ok  	github.com/mitchellh/packer/plugin/builder-parallels-iso	0.018s
+ok  	github.com/mitchellh/packer/plugin/builder-parallels-pvm	0.017s
+ok  	github.com/mitchellh/packer/plugin/builder-qemu	0.018s
+ok  	github.com/mitchellh/packer/plugin/builder-virtualbox-iso	0.020s
+ok  	github.com/mitchellh/packer/plugin/builder-virtualbox-ovf	0.018s
+ok  	github.com/mitchellh/packer/plugin/builder-vmware-iso	0.017s
+ok  	github.com/mitchellh/packer/plugin/builder-vmware-vmx	0.018s
+?   	github.com/mitchellh/packer/plugin/post-processor-artifice	[no test files]
+ok  	github.com/mitchellh/packer/plugin/post-processor-atlas	0.018s
+ok  	github.com/mitchellh/packer/plugin/post-processor-compress	0.019s
+ok  	github.com/mitchellh/packer/plugin/post-processor-docker-import	0.017s
+ok  	github.com/mitchellh/packer/plugin/post-processor-docker-push	0.020s
+ok  	github.com/mitchellh/packer/plugin/post-processor-docker-save	0.018s
+ok  	github.com/mitchellh/packer/plugin/post-processor-docker-tag	0.018s
+ok  	github.com/mitchellh/packer/plugin/post-processor-vagrant	0.021s
+ok  	github.com/mitchellh/packer/plugin/post-processor-vagrant-cloud	0.032s
+ok  	github.com/mitchellh/packer/plugin/post-processor-vsphere	0.023s
+ok  	github.com/mitchellh/packer/plugin/provisioner-ansible-local	0.016s
+ok  	github.com/mitchellh/packer/plugin/provisioner-chef-client	0.020s
+ok  	github.com/mitchellh/packer/plugin/provisioner-chef-solo	0.022s
+ok  	github.com/mitchellh/packer/plugin/provisioner-file	0.019s
+?   	github.com/mitchellh/packer/plugin/provisioner-powershell	[no test files]
+ok  	github.com/mitchellh/packer/plugin/provisioner-puppet-masterless	0.018s
+ok  	github.com/mitchellh/packer/plugin/provisioner-puppet-server	0.017s
+ok  	github.com/mitchellh/packer/plugin/provisioner-salt-masterless	0.017s
+ok  	github.com/mitchellh/packer/plugin/provisioner-shell	0.016s
+?   	github.com/mitchellh/packer/plugin/provisioner-shell-local	[no test files]
+?   	github.com/mitchellh/packer/plugin/provisioner-windows-restart	[no test files]
+?   	github.com/mitchellh/packer/plugin/provisioner-windows-shell	[no test files]
+ok  	github.com/mitchellh/packer/post-processor/artifice	0.015s
+ok  	github.com/mitchellh/packer/post-processor/atlas	0.018s
+ok  	github.com/mitchellh/packer/post-processor/compress	0.036s
+ok  	github.com/mitchellh/packer/post-processor/docker-import	0.015s
+ok  	github.com/mitchellh/packer/post-processor/docker-push	0.015s
+ok  	github.com/mitchellh/packer/post-processor/docker-save	0.018s
+ok  	github.com/mitchellh/packer/post-processor/docker-tag	0.027s
+ok  	github.com/mitchellh/packer/post-processor/vagrant	0.022s
+ok  	github.com/mitchellh/packer/post-processor/vagrant-cloud	0.013s
+ok  	github.com/mitchellh/packer/post-processor/vsphere	0.013s
+ok  	github.com/mitchellh/packer/provisioner/ansible-local	0.022s
+ok  	github.com/mitchellh/packer/provisioner/chef-client	0.021s
+ok  	github.com/mitchellh/packer/provisioner/chef-solo	0.022s
+ok  	github.com/mitchellh/packer/provisioner/file	0.015s
+ok  	github.com/mitchellh/packer/provisioner/powershell	0.188s
+ok  	github.com/mitchellh/packer/provisioner/puppet-masterless	0.020s
+ok  	github.com/mitchellh/packer/provisioner/puppet-server	0.016s
+ok  	github.com/mitchellh/packer/provisioner/salt-masterless	0.017s
+ok  	github.com/mitchellh/packer/provisioner/shell	0.020s
+ok  	github.com/mitchellh/packer/provisioner/shell-local	0.018s
+ok  	github.com/mitchellh/packer/provisioner/windows-restart	0.196s
+ok  	github.com/mitchellh/packer/provisioner/windows-shell	0.178s
+ok  	github.com/mitchellh/packer/template	0.014s
+ok  	github.com/mitchellh/packer/template/interpolate	0.009s
+go get -v -d ./...
+==> Getting dependencies...
+==> Removing old directory...
+==> Building...
+Number of parallel builds: 4
+
+-->    darwin/amd64: github.com/mitchellh/packer
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-amazon-chroot
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-amazon-ebs
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-amazon-instance
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-digitalocean
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-docker
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-file
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-googlecompute
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-null
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-openstack
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-parallels-iso
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-parallels-pvm
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-qemu
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-virtualbox-iso
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-virtualbox-ovf
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-vmware-iso
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/builder-vmware-vmx
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/post-processor-artifice
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/post-processor-atlas
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/post-processor-compress
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/post-processor-docker-import
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/post-processor-docker-push
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/post-processor-docker-save
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/post-processor-docker-tag
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/post-processor-vagrant
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/post-processor-vagrant-cloud
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/post-processor-vsphere
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/provisioner-ansible-local
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/provisioner-chef-client
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/provisioner-chef-solo
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/provisioner-file
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/provisioner-powershell
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/provisioner-puppet-masterless
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/provisioner-puppet-server
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/provisioner-salt-masterless
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/provisioner-shell
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/provisioner-shell-local
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/provisioner-windows-restart
+-->    darwin/amd64: github.com/mitchellh/packer/plugin/provisioner-windows-shell
+==> Copying binaries for this platform...
+
+==> Results:
+total 860160
+-rwxr-xr-x  1 kikitux  staff    10M Oct  7 19:12 packer
+-rwxr-xr-x  1 kikitux  staff    14M Oct  7 19:12 packer-builder-amazon-chroot
+-rwxr-xr-x  1 kikitux  staff    16M Oct  7 19:12 packer-builder-amazon-ebs
+-rwxr-xr-x  1 kikitux  staff    16M Oct  7 19:12 packer-builder-amazon-instance
+-rwxr-xr-x  1 kikitux  staff    12M Oct  7 19:12 packer-builder-digitalocean
+-rwxr-xr-x  1 kikitux  staff    12M Oct  7 19:12 packer-builder-docker
+-rwxr-xr-x  1 kikitux  staff   9.3M Oct  7 19:12 packer-builder-file
+-rwxr-xr-x  1 kikitux  staff    15M Oct  7 19:12 packer-builder-googlecompute
+-rwxr-xr-x  1 kikitux  staff    11M Oct  7 19:12 packer-builder-null
+-rwxr-xr-x  1 kikitux  staff    12M Oct  7 19:12 packer-builder-openstack
+-rwxr-xr-x  1 kikitux  staff    12M Oct  7 19:12 packer-builder-parallels-iso
+-rwxr-xr-x  1 kikitux  staff    12M Oct  7 19:12 packer-builder-parallels-pvm
+-rwxr-xr-x  1 kikitux  staff    12M Oct  7 19:12 packer-builder-qemu
+-rwxr-xr-x  1 kikitux  staff    12M Oct  7 19:12 packer-builder-virtualbox-iso
+-rwxr-xr-x  1 kikitux  staff    12M Oct  7 19:12 packer-builder-virtualbox-ovf
+-rwxr-xr-x  1 kikitux  staff    12M Oct  7 19:12 packer-builder-vmware-iso
+-rwxr-xr-x  1 kikitux  staff    12M Oct  7 19:12 packer-builder-vmware-vmx
+-rwxr-xr-x  1 kikitux  staff   9.3M Oct  7 19:12 packer-post-processor-artifice
+-rwxr-xr-x  1 kikitux  staff   9.8M Oct  7 19:12 packer-post-processor-atlas
+-rwxr-xr-x  1 kikitux  staff   9.9M Oct  7 19:12 packer-post-processor-compress
+-rwxr-xr-x  1 kikitux  staff   9.9M Oct  7 19:12 packer-post-processor-docker-import
+-rwxr-xr-x  1 kikitux  staff   9.9M Oct  7 19:12 packer-post-processor-docker-push
+-rwxr-xr-x  1 kikitux  staff   9.9M Oct  7 19:12 packer-post-processor-docker-save
+-rwxr-xr-x  1 kikitux  staff   9.9M Oct  7 19:12 packer-post-processor-docker-tag
+-rwxr-xr-x  1 kikitux  staff   9.9M Oct  7 19:12 packer-post-processor-vagrant
+-rwxr-xr-x  1 kikitux  staff   9.6M Oct  7 19:12 packer-post-processor-vagrant-cloud
+-rwxr-xr-x  1 kikitux  staff   9.3M Oct  7 19:12 packer-post-processor-vsphere
+-rwxr-xr-x  1 kikitux  staff   9.3M Oct  7 19:12 packer-provisioner-ansible-local
+-rwxr-xr-x  1 kikitux  staff   9.4M Oct  7 19:12 packer-provisioner-chef-client
+-rwxr-xr-x  1 kikitux  staff   9.4M Oct  7 19:12 packer-provisioner-chef-solo
+-rwxr-xr-x  1 kikitux  staff   9.3M Oct  7 19:12 packer-provisioner-file
+-rwxr-xr-x  1 kikitux  staff   9.3M Oct  7 19:12 packer-provisioner-powershell
+-rwxr-xr-x  1 kikitux  staff   9.3M Oct  7 19:12 packer-provisioner-puppet-masterless
+-rwxr-xr-x  1 kikitux  staff   9.3M Oct  7 19:12 packer-provisioner-puppet-server
+-rwxr-xr-x  1 kikitux  staff   9.3M Oct  7 19:12 packer-provisioner-salt-masterless
+-rwxr-xr-x  1 kikitux  staff   9.3M Oct  7 19:12 packer-provisioner-shell
+-rwxr-xr-x  1 kikitux  staff   9.3M Oct  7 19:12 packer-provisioner-shell-local
+-rwxr-xr-x  1 kikitux  staff   9.6M Oct  7 19:12 packer-provisioner-windows-restart
+-rwxr-xr-x  1 kikitux  staff   9.3M Oct  7 19:12 packer-provisioner-windows-shell
