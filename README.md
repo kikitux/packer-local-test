@@ -5,7 +5,15 @@ Toy project that will try to create a test suite for packer.
 
 ### Main Idea
 
-Using `vmware-vmx` will spin a vm and test packer with a suite of known test.
+If local host have `go` and `gox` we will build locally.
+If local host have `virtualbox`, `vmware`, `docker` we will try to test locally.
+
+Then, we will be using `vmware-vmx` will spin a vm and test packer with a suite of known test.
+
+### Local requirements
+
+- go
+- gox
 
 ### File structure
 
