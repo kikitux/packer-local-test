@@ -5,7 +5,7 @@ Toy project that will try to create a test suite for packer.
 
 ## Main Idea
 
-If local host have `go` and `gox` we will build locally.
+If local host have `bzr`, `go` and `gox` we will build locally.
 If local host have `virtualbox`, `vmware`, `docker` we will try to test locally.
 
 Then, we will be using `vmware-vmx` will spin a vm and test packer with a suite of known test.
@@ -13,9 +13,9 @@ Then, we will be using `vmware-vmx` will spin a vm and test packer with a suite 
 ## Workflow
 
 If GOPATH is set, will:
-- go get is there is no $GOPATH/src/github.com/mitchellh/packer
-- git fetch
-- ensure pr/* is part of the repo
+- go get if there is no `$GOPATH/src/github.com/mitchellh/packer`
+- git fetch if there is `$GOPATH/src/github.com/mitchellh/packer`
+- ensure `pr/*` is part of the repo
 - run make updatedeps on first run, or if updatedeps is an argument
 
 If GOPATH is set, and bzr, go, gox are available, it will:
@@ -25,16 +25,24 @@ If GOPATH is set, and bzr, go, gox are available, it will:
 
 ## TODO
 
-be able to:
+- be able to:
 
 ```bash
 [ <master> || <branch> || <number> || <latest> ]
 ```
 
+- have some known `template.json` and run packer validate
+- based on what's available, do some packer build
+- if vmware is available, do some nested vm for a more complete suite of tests
+
+
 ### Local requirements
 
-- go
-- gox
+- `git`
+- `bzr`
+- `go`
+- `gox`
+- GOPATH
 
 ### File structure
 
@@ -86,8 +94,6 @@ go get -v -d ./...
 
 
 ### Tips that will make thing easier
-
-
 
 ```bash
 git clone https://github.com/mitchellh/packer.git
