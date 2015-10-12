@@ -1,0 +1,51 @@
+{
+  "variables": {
+    "test": "master",
+    "ssh_name": "vagrant",
+    "ssh_pass": "vagrant",
+    "vm_name": "osx1011go14",
+    "compression": "9"
+  },
+  "builders": [
+    {
+      "name": "vmware",
+      "type": "vmware-vmx",
+      "source_path": "osx1011/osx1011.vmx",
+      "output_directory": "{{user `vm_name`}}",
+      "vm_name": "{{user `vm_name`}}",
+      "headless": true,
+      "ssh_username": "{{user `ssh_name`}}",
+      "ssh_password": "{{user `ssh_pass`}}",
+      "ssh_wait_timeout": "20m",
+      "shutdown_command": "sudo shutdown -h now",
+      "shutdown_timeout": "20m"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "sh '{{ .Path }}'",
+      "pause_before": "1s",
+      "scripts": [
+        "osx1011go14.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "sh '{{ .Path }}' '{{ user `test` }}' updatedeps",
+      "pause_before": "1s",
+      "scripts": [
+        "packer-local-test.sh"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "only": ["vmware"],
+      "keep_input_artifact": true,
+      "output": "{{user `vm_name`}}.box",
+      "compression_level": "{{user `compression`}}"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "variables": {
+    "test": "master",
+    "ssh_name": "vagrant",
+    "ssh_pass": "vagrant",
+    "vm_name": "osx1011go14test",
+    "compression": "0"
+  },
+  "builders": [
+    {
+      "name": "vmware",
+      "type": "vmware-vmx",
+      "source_path": "osx1011go14/osx1011go14.vmx",
+      "output_directory": "{{user `vm_name`}}",
+      "vm_name": "{{user `vm_name`}}",
+      "headless": true,
+      "ssh_username": "{{user `ssh_name`}}",
+      "ssh_password": "{{user `ssh_pass`}}",
+      "ssh_wait_timeout": "20m",
+      "shutdown_command": "sudo shutdown -h now",
+      "shutdown_timeout": "20m"
+    }
+  ],
+  "provisioners": [
+    {
+    "type": "file",
+    "source": "packer-local-test.sh",
+    "destination": "packer-local-test.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "export test={{ user `test` }}; {{.Vars}} sh '{{ .Path }}'",
+      "pause_before": "1s",
+      "inline": [
+        "env",
+        "export GOROOT=/usr/local/Cellar/go14/1.4.2/libexec",
+        "export GOPATH=~/go",
+        "export PATH=$PATH:/usr/local/bin:$GOROOT/bin:$GOPATH/bin",
+        "mkdir -p $GOPATH",
+        "which go 2>/dev/null || ln -s /usr/local/bin/go14 /usr/local/bin/go",
+        "bash packer-local-test.sh $test updatedeps"
+      ]
+    }
+  ]
+}
